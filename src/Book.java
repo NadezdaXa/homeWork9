@@ -1,8 +1,10 @@
+import java.util.Objects;
+
 public class Book {
 
     private String nane;
     private Author author;
-    private  Integer publicationYear;
+    private Integer publicationYear;
 
     public Book(String nane, Author author, Integer publicationYear) {
         this.nane = nane;
@@ -35,6 +37,20 @@ public class Book {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(nane, book.nane) && Objects.equals(author, book.author) && Objects.equals(publicationYear, book.publicationYear);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nane, author, publicationYear);
+    }
+
+
+    @Override
     public String toString() {
         return "Book{" +
                 "nane='" + nane + '\'' +
@@ -42,5 +58,6 @@ public class Book {
                 ", publicationYear=" + publicationYear +
                 '}';
     }
+
 }
 
